@@ -1,13 +1,11 @@
 
 import './App.css';
-import Counter from './components/Counter';
-
+import ToggleMessage from './components/ToggleMessage';
 
 function App() {
   return (
     <div className="App">
-    
-    <Counter/>
+      < ToggleMessage message=" Dit is mijn bericht "/>
     </div>
   );
 }
