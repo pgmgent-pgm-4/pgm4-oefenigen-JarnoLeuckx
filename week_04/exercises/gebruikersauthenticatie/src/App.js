@@ -1,21 +1,29 @@
-// App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { UserProvider } from './UserContext';
-import LoginPage from './LoginPage';
-import WelcomePage from './WelcomePage';
+import logo from "./logo.svg";
+import "./App.css";
+import {
+	RouterProvider,
+	createBrowserRouter,
+	createRoutesFromElements,
+	Route,
+} from "react-router-dom";
+import Root from "./layout/Root";
+import { HomePage, LoginPage } from "./pages";
+import { UserProvider } from "./context/UserContext";
 
-const App = () => {
-  return (
-    <UserProvider>
-      <Router>
-        <Switch>
-          <Route path="/" exact component={LoginPage} />
-          <Route path="/welcome" component={WelcomePage} />
-        </Switch>
-      </Router>
-    </UserProvider>
-  );
-};
+function App() {
+	const router = createBrowserRouter(
+		createRoutesFromElements(
+			<Route path="/" element={<Root />}>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/login" element={<LoginPage />} />
+			</Route>
+		)
+	);
+	return (
+		<UserProvider>
+			<RouterProvider router={router} />
+		</UserProvider>
+	);
+}
 
 export default App;
